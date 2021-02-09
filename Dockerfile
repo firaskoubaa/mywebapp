@@ -1,6 +1,16 @@
-FROM alpine:latest
+# FROM alpine:latest
 
-RUN apk add py3-pip
+# RUN apk add py3-pip && \ 
+#     apk update && \
+#     apk add python3-dev 
+# RUN apk add default-libmysqlclient-dev && \
+#     apk add build-essential
+
+FROM ubuntu:latest
+
+RUN apt update && \
+    apt install -y python3-pip && \ 
+    apt install -y python3-dev default-libmysqlclient-dev build-essential
 
 WORKDIR /app
 
@@ -8,18 +18,8 @@ COPY . /app
 
 RUN pip3 install -r requirements.txt                                                                        
 
-EXPOSE 5000
+# EXPOSE 5000
 
 ENTRYPOINT  ["python3"]
 
-CMD ["application.py"]
-
-
-# similaire
-
-# FROM alpine:latest
-# RUN apk add python3-dev \
-#     && pip3 install --upgrade pip
-# COPY . /app
-# RUN make /app
-# CMD python /app/app.py
+CMD ["manage.py runserver 0:8000"]

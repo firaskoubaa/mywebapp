@@ -78,18 +78,13 @@ WSGI_APPLICATION = 'mywebapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'djangouser',
-        'PASSWORD': '123=Mysql',
-        'HOST': '',  
-        'PORT': '',  
+        'NAME': 'mywebapp',
+        'USER': 'admin',
+        'PASSWORD': 'mydatabase',
+        'HOST': 'mydatabase.c3cyyzwlfgzi.eu-west-3.rds.amazonaws.com',  
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
     }
 }
-# mydb = mysql.connector.connect(
-# host = "mydatabase.c3cyyzwlfgzi.eu-west-3.rds.amazonaws.com",
-# user = "admin",
-# password = "mydatabase",
-# database = "bookshelf_app")
 # Using the security group in aws, I restrictid the database connection 
 # to all IP adress except my home and my EC2 instance
 

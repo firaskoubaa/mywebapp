@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '_s8bx1-+bna(!#v@8p#(mly3=q!j1s=_$!^t_-q34^y4-c!=ki'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*","www.firaskoubaa.com"]  # From what I understood, ideally I need to put the IP adres of the server for secuity msesures
+ALLOWED_HOSTS = ["*","firaskoubaa.com"]  # From what I understood, ideally I need to put the IP adres of the server for secuity msesures
 
 
 # Application definition
@@ -56,7 +56,8 @@ ROOT_URLCONF = 'mywebapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [Path.joinpath(BASE_DIR, 'templates')],
+        'DIRS': [Path.joinpath(BASE_DIR, 'templates'),
+                Path.joinpath(BASE_DIR, 'bookshelf/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,25 +1,22 @@
-# FROM alpine:latest
-
-# RUN apk add py3-pip && \ 
-#     apk update && \
-#     apk add python3-dev 
-# RUN apk add default-libmysqlclient-dev && \
-#     apk add build-essential
-
-FROM ubuntu:latest
-
-RUN apt update && \
-    apt install -y python3-pip && \ 
-    apt install -y python3-dev default-libmysqlclient-dev build-essential
+FROM python:3.9.1
 
 WORKDIR /app
 
 COPY . /app
 
-RUN pip3 install -r requirements.txt                                                                        
+RUN pip3 install -r requirements.txt    
 
-# EXPOSE 5000
+RUN apt update && apt install -y nginx 
 
-ENTRYPOINT  ["python3"]
+RUN cp nginx_config /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx_config /etc/nginx/sites-enabled/nginx_config
 
-CMD ["manage.py runserver 0:8000"]
+EXPOSE 5000
+
+CMD service nginx start && gunicorn -c gunicorn_config.py mywebapp.wsgi
+
+
+
+# Commands:
+# sudo docker build -t djwebapp:1.1 .
+# sudo docker run -it -v $(pwd):/app:ro -d -p 7001:5000  djwebapp:1.1

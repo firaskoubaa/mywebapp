@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '_s8bx1-+bna(!#v@8p#(mly3=q!j1s=_$!^t_-q34^y4-c!=ki'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]  # From what I understood, ideally I need to put the IP adres of the server for secuity msesures
 

@@ -1,5 +1,6 @@
 # files and folder to be ignored and not added in the docker file
 .gitignore
+minikube-linux-amd64
 /venv
 /.git
 /.vscode

@@ -23,6 +23,3 @@ CMD gunicorn -c gunicorn_config.py mywebapp.wsgi
 # RUN cp nginx_config /etc/nginx/sites-available/
 # RUN ln -s /etc/nginx/sites-available/nginx_config /etc/nginx/sites-enabled/nginx_config
 # CMD service nginx start && gunicorn -c gunicorn_config.py mywebapp.wsgi
-
-
-

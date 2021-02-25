@@ -9,13 +9,11 @@ services:
       - .:/app
     env_file: 
       - .env_file
-    # environment:
-    #   - DEBUG=1
   nginx:
     build: ./nginx_confdir
     image: "nginx_adapted:1.18"
     ports:
-      - "8888:80"
+      - "80:80"
     volumes: 
       - ./static:/app/static
     depends_on: 

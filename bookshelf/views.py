@@ -5,6 +5,7 @@ from .models import BS_tab
 # Limit the maximum number of items to strore in the bookshelf (Databsae)
 maxnum_items_bookshelf = 10 
 
+matrix_data=[]
 # Read and fetch data using Google Books API
 def api_fetchdata(subject):
     global matrix_data
@@ -64,12 +65,14 @@ def rowcountfun():
 
 # Create your views here.
 def bookshelf_app(request):
-    #read data from database        
+    #read data from database      
+    global matrix_data  
     bookshelf_db = BS_tab.objects.all() 
     try:
         rs = request.GET['searched_keywords']   
         research=rs.replace(' ', '+')       # In case the user runs a search with two words or more 
         api_fetchdata(research)
+        print("resaerch is equal to " + research)
         if matrix_data == []:                # In case the application doesn't find any book with the searched name
             return render(request,"bookshelf_app.html", {'search_status' : "not found", 'searched_book_name' : rs, 'bookshelf_objects' : bookshelf_db})
         else:                                # In case everything works fine 
@@ -79,9 +82,12 @@ def bookshelf_app(request):
 
 
 def add_book(request):
+    global matrix_data
     book_to_add_id = request.POST['book_to_add_id']         # Identify the id of the book to be added
 
     # Copy data from the chosen book 
+    print(matrix_data)
+    print(book_to_add_id)
     for datarow in matrix_data:
         if datarow[7] == int(book_to_add_id):
             chosen_book_data = datarow[0:7]

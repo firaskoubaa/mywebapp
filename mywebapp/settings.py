@@ -21,14 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '_s8bx1-+bna(!#v@8p#(mly3=q!j1s=_$!^t_-q34^y4-c!=ki'
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# changeMeInProduction
+SECRET_KEY = '_s8bx1-+bna(!#v@8p#(mly3=q!j1s=_$!^t_-q34^y4-c!=ki'
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get("DEBUG")
+# changeMeInProduction
+DEBUG = True
+# DEBUG = os.environ.get("DEBUG")
 
 # From what I understood, ideally I need to put the IP adres of the server for secuity msesures
+# changeMeInProduction
 ALLOWED_HOSTS = ["*","firaskoubaa.com"]
 
 # Application definition
@@ -82,10 +85,11 @@ WSGI_APPLICATION = 'mywebapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mywebapp',
-        'USER': 'admin',
-        'PASSWORD': 'mydatabase',
-        'HOST': 'mydatabase.c3cyyzwlfgzi.eu-west-3.rds.amazonaws.com',  
+        'NAME': 'mywebapp_db',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  
+        'PORT': 3308,
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
     }
 }
@@ -129,5 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = 'static/'
-STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_URL = 'static/'

@@ -2,3 +2,5 @@ venv/
 .vscode/
 minikube-linux-amd64
 __pycache__/
+msql_dev_volume
+.env_file

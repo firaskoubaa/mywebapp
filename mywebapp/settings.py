@@ -22,13 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # changeMeInProduction
-SECRET_KEY = '_s8bx1-+bna(!#v@8p#(mly3=q!j1s=_$!^t_-q34^y4-c!=ki'
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # changeMeInProduction
-DEBUG = True
-# DEBUG = os.environ.get("DEBUG")
+DEBUG = os.environ.get("DEBUG")
 
 # From what I understood, ideally I need to put the IP adres of the server for secuity msesures
 # changeMeInProduction
@@ -85,11 +83,11 @@ WSGI_APPLICATION = 'mywebapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mywebapp_db',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  
-        'PORT': 3308,
+        'NAME': os.environ.get("MYSQL_DATABASE"),
+        'USER': os.environ.get("MYSQL_DATABASE_USER"),
+        'PASSWORD': os.environ.get("MYSQL_ROOT_PASSWORD"),
+        'HOST': os.environ.get("MYSQL_DATABASE_HOST"),  
+        'PORT': 3306,
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
     }
 }

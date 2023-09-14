@@ -88,6 +88,7 @@ def add_book(request):
     # Copy data from the chosen book 
     print(matrix_data)
     print(book_to_add_id)
+    chosen_book_data = []
     for datarow in matrix_data:
         if datarow[7] == int(book_to_add_id):
             chosen_book_data = datarow[0:7]

@@ -1,22 +1,36 @@
 version: "3.7"
 services:
-  django-corn:
-    build: .
-    image: django-corn:1.0
+  mysql-dbserver:
+    image: mysql:5.7.43
     ports:
-      - "8000:8000"
+      - "3306:3306"
     volumes: 
-      - .:/app
+      - ./msql_dev_volume:/var/lib/mysql
     env_file: 
       - .env_file
-  nginx:
-    build: ./nginx_confdir
-    image: "nginx_adapted:1.18"
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -hlocalhost -uroot -p$${MYSQL_ROOT_PASSWORD}"]
+      retries: 30
+      timeout: 5s
+
+  django-backend:
+    image: firaskoubaa1993/django-backend:1.1
+    ports:
+      - "8000:8000"
+    # volumes: 
+    #   - .:/app
+    env_file: 
+      - .env_file
+    depends_on: 
+      mysql-dbserver:
+        condition: service_healthy
+
+  nginx-webserver:
+    image: "firaskoubaa1993/nginx-webserver:1.2"
     ports:
       - "80:80"
-    volumes: 
-      - ./static:/app/static
+    # volumes: 
+    #   - ./static:/app/static
     depends_on: 
-      - django-corn
-volumes: 
-  .:
+      - django-backend

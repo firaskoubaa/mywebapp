@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  mysql:
+  mysql-dbserver:
     image: mysql:5.7.43
     ports:
       - "3306:3306"
@@ -14,8 +14,8 @@ services:
       retries: 30
       timeout: 5s
 
-  django-corn:
-    image: django-backend:1.1
+  django-backend:
+    image: firaskoubaa1993/django-backend:1.1
     ports:
       - "8000:8000"
     # volumes: 
@@ -23,14 +23,14 @@ services:
     env_file: 
       - .env_file
     depends_on: 
-      mysql:
+      mysql-dbserver:
         condition: service_healthy
 
-  nginx:
-    image: "nginx_adapted:1.18"
+  nginx-webserver:
+    image: "firaskoubaa1993/nginx-webserver:1.2"
     ports:
       - "80:80"
-    volumes: 
-      - ./static:/app/static
+    # volumes: 
+    #   - ./static:/app/static
     depends_on: 
-      - django-corn
+      - django-backend

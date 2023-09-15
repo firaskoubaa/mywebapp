@@ -8,7 +8,7 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
 
-CMD sleep 20 && echo "Waited 20s to make sure Mysql is up" && \
+CMD sleep 20 && echo "Waited 20s to make sure mysql-dbserver is up" && \
     python manage.py makemigrations && python manage.py migrate && \
     gunicorn -c gunicorn_config.py mywebapp.wsgi
 

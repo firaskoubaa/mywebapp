@@ -1,0 +1,11 @@
+FROM nginx:1.18
+
+COPY nginx-default.conf /etc/nginx/conf.d/default.conf
+
+RUN mkdir -p /app/static
+
+COPY /static /app/static
+
+
+# Command to build to nginx image
+# docker build -t nginx-webserver:1.2 -f nginx-Dockerfile .

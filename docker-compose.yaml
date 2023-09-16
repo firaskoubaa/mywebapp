@@ -15,7 +15,7 @@ services:
       timeout: 5s
 
   django-backend:
-    image: firaskoubaa1993/django-backend:1.1
+    image: firaskoubaa1993/django-backend:1.2
     ports:
       - "8000:8000"
     # volumes: 
@@ -27,7 +27,7 @@ services:
         condition: service_healthy
 
   nginx-webserver:
-    image: "firaskoubaa1993/nginx-webserver:1.2"
+    image: firaskoubaa1993/nginx-webserver:1.2
     ports:
       - "80:80"
     # volumes: 

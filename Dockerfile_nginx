@@ -8,4 +8,4 @@ COPY /static /app/static
 
 
 # Command to build to nginx image
-# docker build -t firaskoubaa1993/nginx-webserver:1.2 -f nginx-Dockerfile .
+# docker build -t firaskoubaa1993/nginx-webserver:1.2 -f Dockerfile_nginx .

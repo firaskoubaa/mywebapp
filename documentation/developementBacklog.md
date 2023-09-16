@@ -21,6 +21,7 @@ Helm chart 
 - Change "WHAT I DO" section: 
   delete DEPLOYMENT and VERSIONNING
   add CLOUD and DEVOPS 
+- reduce image size: slim or alpine, multistage image ...
 
 
 

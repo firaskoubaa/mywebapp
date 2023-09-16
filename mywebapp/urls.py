@@ -22,5 +22,5 @@ urlpatterns = [
     path('', index, name='home page'),
 
     # imported urls from apps
-    path('bs/', include('bookshelf.urls')),
+    path('bookshelf/', include('bookshelf.urls')),
 ]
